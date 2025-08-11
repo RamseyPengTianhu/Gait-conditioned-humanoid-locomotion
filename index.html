@@ -212,6 +212,29 @@
         margin-left: 8px;
       }
 
+      /* 通用图文组件：带标题 */
+      figure{
+        margin:0;
+      }
+      .fig{
+        display:block;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background:#0a0f1e;
+        overflow:hidden;
+      }
+      .fig img{
+        width:100%;
+        height:auto;
+        display:block;
+      }
+      figcaption{
+        font-size:14px;
+        color:#cbd5e1;
+        padding:8px 10px 0;
+      }
+
+
       /* Figures 统一排版 */
       .figure-grid {
         display: grid;
@@ -229,6 +252,7 @@
         border-radius: 12px;
         background: #0a0f1e;
       }
+      
 
       /* 大图在宽屏时跨两列，窄屏退化为一列 */
       @media (min-width: 900px) {
@@ -242,6 +266,19 @@
         aspect-ratio: 16/9;
         object-fit: cover; /* 居中裁切，避免超高图把网格撑高 */
       }
+
+
+      figure{ margin:0; }
+      .fig{ border:1px solid var(--border); border-radius:12px; background:#0a0f1e; overflow:hidden; }
+      .fig img{ width:100%; height:auto; display:block; }
+      figcaption{ font-size:14px; color:#cbd5e1; padding:8px 10px 0; }
+
+      /* 自适应网格：最小260px */
+      .grid-auto{ display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+      /* 大图宽屏跨两列 */
+      @media (min-width:900px){ .span-2{ grid-column:span 2; } }
+      /* GIF 统一 16:9，想保留原比例就去掉该类 */
+      .thumb-169{ aspect-ratio:16/9; object-fit:cover; }
     </style>
   </head>
   <body>
@@ -271,13 +308,19 @@
         </div>
       </header>
 
-      <section class="hero">
+      <!-- <section class="hero">
         <div class="media">
           <iframe
             src="https://www.youtube.com/embed/9s9dERubIWA"
             title="Project video"
             allowfullscreen
           ></iframe>
+        </div>
+      </section> -->
+
+      <section class="hero">
+        <div class="media">
+          <img src="figs/title_fig.png" alt="Gait-Conditioned RL – Title figure">
         </div>
       </section>
 
@@ -319,6 +362,21 @@
           </div>
         </div>
 
+
+        <section class="card">
+          <h2>Framework</h2>
+          <p>
+            We propose a unified recurrent policy with gait encoding and a structured curriculum.
+            The critic and actor are trained with gait-aware losses to reduce interference across modes.
+          </p>
+          <figure>
+            <div class="fig">
+              <img src="figs/Overall_Framwork.png" alt="Overall framework diagram">
+            </div>
+            <figcaption>Overall framework: recurrent policy, gait encoding, gait & velocity curriculum, and gait-aware losses.</figcaption>
+          </figure>
+        </section>
+
         <div class="card">
           <h2>Highlights</h2>
           <ul class="list">
@@ -340,6 +398,21 @@
             <li>Open‑source training configs and logs for reproducibility.</li>
           </ul>
         </div>
+      </section>
+
+
+      <section class="card">
+        <h2>Gait-Conditioned Reward</h2>
+        <p>
+          A compact <em>gait mask</em> routes gait-specific rewards (e.g., contact, push-off, stillness)
+          while keeping regulation terms shared. This mitigates reward interference and stabilizes multi-gait learning.
+        </p>
+        <figure>
+          <div class="fig">
+            <img src="figs/Gait_Mask.png" alt="Gait mask and reward routing">
+          </div>
+          <figcaption>Gait mask activates different reward subsets for run/walk/stand; regulation rewards remain shared.</figcaption>
+        </figure>
       </section>
 
       <section id="paper" class="grid cols-2">
@@ -380,7 +453,55 @@
         </div>
       </section>
 
-      <section id="video" class="grid cols-2">
+      <section class="card" id="video">
+        <h2>Video</h2>
+        <div class="media">
+          <iframe src="https://www.youtube.com/embed/9s9dERubIWA" title="Project video" allowfullscreen></iframe>
+        </div>
+      </section>
+
+
+      <section class="card" id="simulation">
+        <h2>Simulation</h2>
+        <div class="grid-auto">
+          <figure>
+            <div class="fig thumb-169"><img src="figs/stand.gif" alt="Stand"></div>
+            <figcaption>Gait: <strong>Stand</strong></figcaption>
+          </figure>
+      
+          <figure>
+            <div class="fig thumb-169"><img src="figs/low_speed_walk.gif" alt="Low-speed walk"></div>
+            <figcaption>Gait: <strong>Walk (low speed)</strong></figcaption>
+          </figure>
+      
+          <figure>
+            <div class="fig thumb-169"><img src="figs/high_speed_walk.gif" alt="High-speed walk"></div>
+            <figcaption>Gait: <strong>Walk (high speed)</strong></figcaption>
+          </figure>
+      
+          <figure>
+            <div class="fig thumb-169"><img src="figs/low_speed_run.gif" alt="Low-speed run"></div>
+            <figcaption>Gait: <strong>Run (low speed)</strong></figcaption>
+          </figure>
+      
+          <figure>
+            <div class="fig thumb-169"><img src="figs/high_speed_run.gif" alt="High-speed run"></div>
+            <figcaption>Gait: <strong>Run (high speed)</strong></figcaption>
+          </figure>
+      
+          <figure>
+            <div class="fig thumb-169"><img src="figs/walk_to_stand.gif" alt="Walk → Stand"></div>
+            <figcaption>Transition: <strong>Walk → Stand</strong></figcaption>
+          </figure>
+      
+          <figure>
+            <div class="fig thumb-169"><img src="figs/run_to_walk.gif" alt="Run → Walk"></div>
+            <figcaption>Transition: <strong>Run → Walk</strong></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- <section id="video" class="grid cols-2">
         <div class="card">
           <h2>Video</h2>
           <div class="media">
@@ -431,7 +552,7 @@
                    alt="Low-speed run" loading="lazy">
             </div>
           </div>
-      </section>
+      </section> -->
 
       <section id="bibtex" class="card">
         <h2>Citation</h2>
