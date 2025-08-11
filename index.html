@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Gait‑Conditioned Reinforcement Learning for Humanoid Locomotion
+    </title>
+    <meta
+      name="description"
+      content="Project page for gait‑conditioned reinforcement learning with multi‑phase curriculum and biomechanical priors."
+    />
+    <meta
+      property="og:title"
+      content="Gait‑Conditioned RL for Humanoid Locomotion"
+    />
+    <meta
+      property="og:description"
+      content="Project page for gait‑conditioned reinforcement learning with multi‑phase curriculum and biomechanical priors."
+    />
+    <meta property="og:type" content="website" />
+    <!-- TODO: replace with your hosted teaser image URL -->
+    <meta
+      property="og:image"
+      content="https://via.placeholder.com/1200x630.png?text=Gait-Conditioned+RL+Teaser"
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #0f172a;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+        --pill: #1f2937;
+        --border: #1f2a40;
+        --max: 1100px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Ubuntu, Cantarell, Noto Sans, sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 28px;
+      }
+      header {
+        display: grid;
+        gap: 18px;
+        align-items: center;
+        justify-items: center;
+        padding: 56px 0;
+      }
+      header h1 {
+        margin: 0;
+        font-size: clamp(26px, 4.2vw, 46px);
+        letter-spacing: 0.3px;
+        text-align: center;
+      }
+      header p.lead {
+        margin: 0;
+        max-width: 900px;
+        line-height: 1.6;
+        color: var(--muted);
+        text-align: center;
+      }
+      .authors {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 12px;
+        font-size: 15px;
+        color: #cbd5e1;
+      }
+      .pillbar {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 16px;
+      }
+      .pill {
+        background: var(--pill);
+        border: 1px solid var(--border);
+        color: #cbd5e1;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 14px;
+      }
+      .hero {
+        background: linear-gradient(135deg, #0b1020 0%, #0e1630 100%);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .media {
+        aspect-ratio: 16/9;
+        background: #0a0f1e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .media img {
+        max-width: 100%;
+        display: block;
+      }
+      .media iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      section {
+        margin: 34px 0;
+      }
+      h2 {
+        font-size: clamp(20px, 2.8vw, 28px);
+        margin: 0 0 12px;
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+      @media (min-width: 850px) {
+        .grid.cols-2 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+      }
+      .btns {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        background: #0b1226;
+        border: 1px solid var(--border);
+        padding: 10px 14px;
+        border-radius: 12px;
+        color: #e5e7eb;
+        font-weight: 600;
+      }
+      .btn:hover {
+        border-color: #2b3a5c;
+      }
+      .kbd {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        background: #0b1226;
+        border: 1px solid var(--border);
+        padding: 2px 6px;
+        border-radius: 6px;
+        color: #cbd5e1;
+      }
+      pre {
+        background: #0b1226;
+        border: 1px solid var(--border);
+        padding: 14px;
+        border-radius: 12px;
+        overflow: auto;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        color: #d1d5db;
+      }
+      footer {
+        opacity: 0.8;
+        text-align: center;
+        padding: 24px 0;
+        color: var(--muted);
+      }
+      .teaser {
+        width: 100%;
+        border-bottom: 1px solid var(--border);
+      }
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        color: #cbd5e1;
+      }
+      .badge {
+        font-size: 12px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #092236;
+        color: #9bd8ff;
+        border: 1px solid #1c3b59;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Gait‑Conditioned Reinforcement Learning for Humanoid Locomotion</h1>
+        <div class="authors">
+          <!-- TODO: Replace with your author list & affiliations -->
+          <span>Peng Tianhu</span> · <span>Co‑authors</span>
+        </div>
+        <p class="lead">
+          A unified policy that performs <strong>standing</strong>,
+          <strong>walking</strong>, and <strong>running</strong>, with smooth
+          transitions, via a <em>gait‑conditioned reward routing</em> mechanism
+          and a multi‑phase curriculum. Real‑world deployment on Unitree G1.
+        </p>
+        <div class="pillbar">
+          <span class="pill"
+            >Humanoids 2025 <span class="badge">Accepted</span></span
+          >
+          <span class="pill">Isaac Gym / Isaac Lab</span>
+          <span class="pill">Sim‑to‑Real</span>
+          <span class="pill">Multi‑gait</span>
+        </div>
+      </header>
+
+      <section class="hero">
+        <!-- You can swap the <img> for a YouTube/Vimeo embed by un‑commenting the iframe below -->
+        <div class="media">
+          <!-- TODO: Replace teaser image or embed link -->
+          <img
+            class="teaser"
+            src="https://via.placeholder.com/1280x720.png?text=Project+Teaser:+Gait-Conditioned+RL"
+            alt="Project teaser"
+          />
+          <!-- Example YouTube embed:
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Project video" allowfullscreen></iframe>
+        --></div>
+      </section>
+
+      <section class="grid cols-2">
+        <div class="card">
+          <h2>Abstract</h2>
+          <p>
+            <!-- TODO: Paste your final abstract here. Keep 120–180 words for readability. -->
+            We present a gait‑conditioned reinforcement learning framework that
+            unifies standing, walking, and running within a single policy. At
+            each step, the system classifies gait mode and routes a
+            mode‑specific subset of rewards through a <em>gait mask</em>, while
+            regulation terms remain shared. A multi‑phase curriculum stabilizes
+            training from single‑gait proficiency to multi‑gait mastery with
+            smooth transitions. We demonstrate robust sim‑to‑real transfer on a
+            Unitree G1 humanoid.
+          </p>
+          <div class="btns">
+            <!-- TODO: Replace hrefs -->
+            <a class="btn" href="#paper">📄 Paper (PDF)</a>
+            <a class="btn" href="#video">🎬 Video</a>
+            <a class="btn" href="#code">🧑‍💻 Code</a>
+            <a class="btn" href="#bibtex">📚 BibTeX</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Highlights</h2>
+          <ul class="list">
+            <li>
+              Gait‑conditioned reward routing with per‑mode terms (contact,
+              push‑off, stillness) and shared regulation.
+            </li>
+            <li>
+              Multi‑phase curriculum: walk → walk+stand → +transitions → +run.
+            </li>
+            <li>
+              Masked critic/value loss & optional multi‑head actor to avoid
+              interference.
+            </li>
+            <li>
+              Real‑robot evaluation on Unitree G1; smooth walk↔stand
+              transitions.
+            </li>
+            <li>Open‑source training configs and logs for reproducibility.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="paper" class="grid cols-2">
+        <div class="card">
+          <h2>Paper</h2>
+          <p>
+            <!-- TODO: Fill metadata -->
+            <strong
+              >Gait‑Conditioned Reinforcement Learning with Multi‑Phase
+              Curriculum for Humanoid Locomotion</strong
+            ><br />
+            <em>Peng Tianhu</em>, Co‑authors<br />
+            Humanoids 2025 (accepted).
+            <!-- TODO: add DOI/arXiv -->
+          </p>
+          <div class="btns">
+            <!-- TODO: set actual links; keep a local copy in /assets if you prefer -->
+            <a class="btn" href="./paper.pdf">⬇️ PDF</a>
+            <a class="btn" href="https://arxiv.org/abs/XXXX.XXXXX">arXiv</a>
+            <a class="btn" href="#bibtex">Cite</a>
+          </div>
+        </div>
+        <div class="card" id="code">
+          <h2>Code & Data</h2>
+          <p>
+            <!-- TODO: Update to your repo URLs -->
+            <a href="https://github.com/YOUR_USER/gait-conditioned-humanoid"
+              >GitHub repo</a
+            >
+            ·
+            <a
+              href="https://github.com/YOUR_USER/gait-conditioned-humanoid/releases"
+              >Releases</a
+            >
+          </p>
+          <ul class="list">
+            <li>Isaac Gym / Isaac Lab training scripts & configs.</li>
+            <li>Reward routing and gait mask implementation.</li>
+            <li>Evaluation logs and plotting utilities.</li>
+          </ul>
+          <p>
+            <span class="kbd">pip install -r requirements.txt</span>
+          </p>
+        </div>
+      </section>
+
+      <section id="video" class="grid cols-2">
+        <div class="card">
+          <h2>Video</h2>
+          <div class="media">
+            <!-- TODO: replace VIDEO_ID -->
+            <iframe
+              src="https://www.youtube.com/embed/VIDEO_ID"
+              title="Project video"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Figures</h2>
+          <div
+            class="grid"
+            style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px"
+          >
+            <!-- TODO: replace with your images -->
+            <img
+              src="https://via.placeholder.com/600x400.png?text=Reward+Routing"
+              alt="Reward routing diagram"
+            />
+            <img
+              src="https://via.placeholder.com/600x400.png?text=Gait+Modes"
+              alt="Gait modes"
+            />
+            <img
+              src="https://via.placeholder.com/600x400.png?text=Real+Robot"
+              alt="Real robot deployment"
+            />
+            <img
+              src="https://via.placeholder.com/600x400.png?text=Sim+Envs"
+              alt="Simulation environments"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="bibtex" class="card">
+        <h2>Citation</h2>
+        <pre><code>@inproceedings{peng2025gaitconditioned,
+  title     = {Gait-Conditioned Reinforcement Learning with Multi-Phase Curriculum for Humanoid Locomotion},
+  author    = {Peng, Tianhu and Others},
+  booktitle = {IEEE-RAS International Conference on Humanoid Robots (Humanoids)},
+  year      = {2025},
+  note      = {Accepted}
+}</code></pre>
+      </section>
+
+      <section class="grid cols-2">
+        <div class="card">
+          <h2>Reproducibility</h2>
+          <ol class="list">
+            <li>Clone repo & install deps.</li>
+            <li>
+              Download motions and place under <code>resources/motions/</code>.
+            </li>
+            <li>
+              Run Phase‑1 walking:
+              <code class="kbd">python train.py --phase=1</code>
+            </li>
+            <li>
+              Resume for multi‑gait:
+              <code class="kbd"
+                >python train.py --phase=3 --resume=logs/phase1.pt</code
+              >
+            </li>
+          </ol>
+        </div>
+        <div class="card">
+          <h2>Contact</h2>
+          <p>
+            <!-- TODO: update -->
+            For questions and collaboration, email
+            <a href="mailto:you@example.com">you@example.com</a>.
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Gait‑Conditioned RL • Built for GitHub Pages
+      </footer>
+    </div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
