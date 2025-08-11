@@ -4,26 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-      Gait‑Conditioned Reinforcement Learning for Humanoid Locomotion
+      Gait-Conditioned Reinforcement Learning for Humanoid Locomotion
     </title>
     <meta
       name="description"
-      content="Project page for gait‑conditioned reinforcement learning with multi‑phase curriculum and biomechanical priors."
+      content="Project page for gait-conditioned reinforcement learning with multi-phase curriculum and biomechanical priors."
     />
     <meta
       property="og:title"
-      content="Gait‑Conditioned RL for Humanoid Locomotion"
+      content="Gait-Conditioned RL for Humanoid Locomotion"
     />
     <meta
       property="og:description"
-      content="Project page for gait‑conditioned reinforcement learning with multi‑phase curriculum and biomechanical priors."
+      content="Unified multi-gait humanoid locomotion with gait-conditioned reward routing, curriculum learning, and sim-to-real on Unitree G1."
     />
     <meta property="og:type" content="website" />
-    <!-- TODO: replace with your hosted teaser image URL -->
-    <meta
-      property="og:image"
-      content="https://via.placeholder.com/1200x630.png?text=Gait-Conditioned+RL+Teaser"
-    />
+    <meta property="og:image" content="figs/title_fig.png" />
     <meta name="theme-color" content="#0f172a" />
     <style>
       :root {
@@ -104,28 +100,6 @@
         border-radius: 999px;
         font-size: 14px;
       }
-      .hero {
-        background: linear-gradient(135deg, #0b1020 0%, #0e1630 100%);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        overflow: hidden;
-      }
-      .media {
-        aspect-ratio: 16/9;
-        background: #0a0f1e;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .media img {
-        max-width: 100%;
-        display: block;
-      }
-      .media iframe {
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
       section {
         margin: 34px 0;
       }
@@ -193,92 +167,71 @@
         padding: 24px 0;
         color: var(--muted);
       }
-      .teaser {
-        width: 100%;
-        border-bottom: 1px solid var(--border);
-      }
-      .list {
-        margin: 0;
-        padding-left: 18px;
-        color: #cbd5e1;
-      }
-      .badge {
-        font-size: 12px;
-        padding: 2px 8px;
-        border-radius: 999px;
-        background: #092236;
-        color: #9bd8ff;
-        border: 1px solid #1c3b59;
-        margin-left: 8px;
-      }
 
-      /* 通用图文组件：带标题 */
-      figure{
-        margin:0;
+      /* Media blocks */
+      .hero {
+        background: linear-gradient(135deg, #0b1020 0%, #0e1630 100%);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
       }
-      .fig{
-        display:block;
-        border:1px solid var(--border);
-        border-radius:12px;
-        background:#0a0f1e;
-        overflow:hidden;
+      .media {
+        aspect-ratio: 16/9;
+        background: #0a0f1e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      .fig img{
-        width:100%;
-        height:auto;
-        display:block;
-      }
-      figcaption{
-        font-size:14px;
-        color:#cbd5e1;
-        padding:8px 10px 0;
-      }
-
-
-      /* Figures 统一排版 */
-      .figure-grid {
-        display: grid;
-        gap: 12px;
-        /* 自动填充列：每列最小260px，最大等分 */
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      }
-
-      /* 图片自适应、不溢出 */
-      .figure-grid img {
-        width: 100%;
-        height: auto;
+      .media img {
+        max-width: 100%;
         display: block;
+        height: auto;
+      }
+      .media iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      .media.no-aspect {
+        aspect-ratio: auto;
+      }
+
+      /* Figure + caption */
+      figure {
+        margin: 0;
+      }
+      .fig {
         border: 1px solid var(--border);
         border-radius: 12px;
         background: #0a0f1e;
+        overflow: hidden;
       }
-      
+      .fig img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      figcaption {
+        font-size: 14px;
+        color: #cbd5e1;
+        padding: 8px 10px 0;
+      }
 
-      /* 大图在宽屏时跨两列，窄屏退化为一列 */
+      /* Responsive image grids */
+      .grid-auto {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      }
       @media (min-width: 900px) {
-        .figure-grid .span-2 {
+        .span-2 {
           grid-column: span 2;
         }
       }
-
-      /* 让小图/GIF 统一 16:9，更整齐；去掉该类则按原始比例显示 */
       .thumb-169 {
         aspect-ratio: 16/9;
-        object-fit: cover; /* 居中裁切，避免超高图把网格撑高 */
+        object-fit: cover;
       }
-
-
-      figure{ margin:0; }
-      .fig{ border:1px solid var(--border); border-radius:12px; background:#0a0f1e; overflow:hidden; }
-      .fig img{ width:100%; height:auto; display:block; }
-      figcaption{ font-size:14px; color:#cbd5e1; padding:8px 10px 0; }
-
-      /* 自适应网格：最小260px */
-      .grid-auto{ display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
-      /* 大图宽屏跨两列 */
-      @media (min-width:900px){ .span-2{ grid-column:span 2; } }
-      /* GIF 统一 16:9，想保留原比例就去掉该类 */
-      .thumb-169{ aspect-ratio:16/9; object-fit:cover; }
     </style>
   </head>
   <body>
@@ -294,36 +247,43 @@
         </div>
         <p class="lead">
           A unified policy that performs <strong>standing</strong>,
-          <strong>walking</strong>, and <strong>running</strong>, with smooth
-          transitions, via a <em>gait‑conditioned reward routing</em> mechanism
-          and a multi‑phase curriculum. Real‑world deployment on Unitree G1.
+          <strong>walking</strong>, and <strong>running</strong> with smooth
+          transitions, via a <em>gait-conditioned reward routing</em> mechanism
+          and a multi-phase curriculum. Real-world deployment on Unitree G1.
         </p>
         <div class="pillbar">
           <span class="pill"
-            >Humanoids 2025 <span class="badge">Accepted</span></span
+            >Humanoids 2025
+            <span
+              style="
+                font-size: 12px;
+                padding: 2px 8px;
+                border-radius: 999px;
+                background: #092236;
+                color: #9bd8ff;
+                border: 1px solid #1c3b59;
+                margin-left: 8px;
+              "
+              >Accepted</span
+            ></span
           >
           <span class="pill">Isaac Gym / Isaac Lab</span>
-          <span class="pill">Sim‑to‑Real</span>
-          <span class="pill">Multi‑gait</span>
+          <span class="pill">Sim-to-Real</span>
+          <span class="pill">Multi-gait</span>
         </div>
       </header>
 
-      <!-- <section class="hero">
-        <div class="media">
-          <iframe
-            src="https://www.youtube.com/embed/9s9dERubIWA"
-            title="Project video"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </section> -->
-
+      <!-- Hero cover -->
       <section class="hero">
-        <div class="media">
-          <img src="figs/title_fig.png" alt="Gait-Conditioned RL – Title figure">
+        <div class="media no-aspect">
+          <img
+            src="figs/title_fig.png"
+            alt="Gait-Conditioned RL — Title figure"
+          />
         </div>
       </section>
 
+      <!-- Abstract + Framework + Highlights -->
       <section class="grid cols-2">
         <div class="card">
           <h2>Abstract</h2>
@@ -350,9 +310,7 @@
             <a class="btn" href="https://arxiv.org/abs/2505.20619"
               >📄 Paper (arXiv)</a
             >
-            <a class="btn" href="https://www.youtube.com/watch?v=9s9dERubIWA"
-              >🎬 Video</a
-            >
+            <a class="btn" href="#video">🎬 Video</a>
             <a
               class="btn"
               href="https://github.com/RamseyPengTianhu/Gait-conditioned-humanoid-locomotion"
@@ -362,69 +320,81 @@
           </div>
         </div>
 
-
-        <section class="card">
+        <div class="card">
           <h2>Framework</h2>
           <p>
-            We propose a unified recurrent policy with gait encoding and a structured curriculum.
-            The critic and actor are trained with gait-aware losses to reduce interference across modes.
+            A unified recurrent policy with gait encoding and a structured
+            gait/velocity curriculum. Gait-aware losses reduce interference
+            across modes and stabilize multi-gait learning.
           </p>
           <figure>
             <div class="fig">
-              <img src="figs/Overall_Framwork.png" alt="Overall framework diagram">
+              <img
+                src="figs/Overall_Framwork.png"
+                alt="Overall framework diagram"
+              />
             </div>
-            <figcaption>Overall framework: recurrent policy, gait encoding, gait & velocity curriculum, and gait-aware losses.</figcaption>
+            <figcaption>
+              Overall framework: recurrent policy, gait encoding, curriculum and
+              gait-aware losses.
+            </figcaption>
           </figure>
-        </section>
+        </div>
 
         <div class="card">
           <h2>Highlights</h2>
           <ul class="list">
             <li>
-              Gait‑conditioned reward routing with per‑mode terms (contact,
-              push‑off, stillness) and shared regulation.
+              Gait-conditioned reward routing with per-mode terms and shared
+              regulation.
             </li>
             <li>
-              Multi‑phase curriculum: walk → walk+stand → +transitions → +run.
+              Multi-phase curriculum: walk → walk+stand → +transitions → +run.
             </li>
             <li>
-              Masked critic/value loss & optional multi‑head actor to avoid
+              Masked critic/value loss & optional multi-head actor to avoid
               interference.
             </li>
             <li>
-              Real‑robot evaluation on Unitree G1; smooth walk↔stand
+              Real-robot evaluation on Unitree G1; smooth walk↔stand
               transitions.
             </li>
-            <li>Open‑source training configs and logs for reproducibility.</li>
+            <li>Open-source training configs and logs for reproducibility.</li>
           </ul>
         </div>
       </section>
 
-
+      <!-- Gait-Conditioned Reward -->
       <section class="card">
         <h2>Gait-Conditioned Reward</h2>
         <p>
-          A compact <em>gait mask</em> routes gait-specific rewards (e.g., contact, push-off, stillness)
-          while keeping regulation terms shared. This mitigates reward interference and stabilizes multi-gait learning.
+          The <em>gait mask</em> routes gait-specific objectives (e.g., contact,
+          push-off, stillness) while regulation terms remain shared, mitigating
+          reward interference among run/walk/stand.
         </p>
         <figure>
           <div class="fig">
-            <img src="figs/Gait_Mask.png" alt="Gait mask and reward routing">
+            <img src="figs/Gait_Mask.png" alt="Gait mask and reward routing" />
           </div>
-          <figcaption>Gait mask activates different reward subsets for run/walk/stand; regulation rewards remain shared.</figcaption>
+          <figcaption>
+            Gait mask activates mode-specific rewards; regulation rewards are
+            shared across gaits.
+          </figcaption>
         </figure>
       </section>
 
+      <!-- Paper + Code -->
       <section id="paper" class="grid cols-2">
         <div class="card">
           <h2>Paper</h2>
           <p>
             <strong
-              >Gait‑Conditioned Reinforcement Learning with Multi‑Phase
+              >Gait-Conditioned Reinforcement Learning with Multi-Phase
               Curriculum for Humanoid Locomotion</strong
-            ><br /><em>Tianhu Peng</em>, <em>Lingfan Bao</em>,
-            <em>Chengxu Zhou</em> (corresponding author)<br />Humanoids 2025
-            (accepted).
+            ><br />
+            <em>Tianhu Peng</em>, <em>Lingfan Bao</em>,
+            <em>Chengxu Zhou</em> (corresponding author)<br />
+            Humanoids 2025 (accepted).
           </p>
           <div class="btns">
             <a class="btn" href="https://arxiv.org/abs/2505.20619">arXiv</a>
@@ -453,118 +423,86 @@
         </div>
       </section>
 
+      <!-- Video -->
       <section class="card" id="video">
         <h2>Video</h2>
         <div class="media">
-          <iframe src="https://www.youtube.com/embed/9s9dERubIWA" title="Project video" allowfullscreen></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/9s9dERubIWA"
+            title="Project video"
+            allowfullscreen
+          ></iframe>
         </div>
       </section>
 
-
+      <!-- Simulation GIFs -->
       <section class="card" id="simulation">
         <h2>Simulation</h2>
         <div class="grid-auto">
           <figure>
-            <div class="fig thumb-169"><img src="figs/stand.gif" alt="Stand"></div>
+            <div class="fig thumb-169">
+              <img src="figs/stand.gif" alt="Stand" />
+            </div>
             <figcaption>Gait: <strong>Stand</strong></figcaption>
           </figure>
-      
+
           <figure>
-            <div class="fig thumb-169"><img src="figs/low_speed_walk.gif" alt="Low-speed walk"></div>
+            <div class="fig thumb-169">
+              <img src="figs/low_speed_walk.gif" alt="Low-speed walk" />
+            </div>
             <figcaption>Gait: <strong>Walk (low speed)</strong></figcaption>
           </figure>
-      
+
           <figure>
-            <div class="fig thumb-169"><img src="figs/high_speed_walk.gif" alt="High-speed walk"></div>
+            <div class="fig thumb-169">
+              <img src="figs/high_speed_walk.gif" alt="High-speed walk" />
+            </div>
             <figcaption>Gait: <strong>Walk (high speed)</strong></figcaption>
           </figure>
-      
+
           <figure>
-            <div class="fig thumb-169"><img src="figs/low_speed_run.gif" alt="Low-speed run"></div>
+            <div class="fig thumb-169">
+              <img src="figs/low_speed_run.gif" alt="Low-speed run" />
+            </div>
             <figcaption>Gait: <strong>Run (low speed)</strong></figcaption>
           </figure>
-      
+
           <figure>
-            <div class="fig thumb-169"><img src="figs/high_speed_run.gif" alt="High-speed run"></div>
+            <div class="fig thumb-169">
+              <img src="figs/high_speed_run.gif" alt="High-speed run" />
+            </div>
             <figcaption>Gait: <strong>Run (high speed)</strong></figcaption>
           </figure>
-      
+
           <figure>
-            <div class="fig thumb-169"><img src="figs/walk_to_stand.gif" alt="Walk → Stand"></div>
+            <div class="fig thumb-169">
+              <img src="figs/walk_to_stand.gif" alt="Walk to Stand" />
+            </div>
             <figcaption>Transition: <strong>Walk → Stand</strong></figcaption>
           </figure>
-      
+
           <figure>
-            <div class="fig thumb-169"><img src="figs/run_to_walk.gif" alt="Run → Walk"></div>
+            <div class="fig thumb-169">
+              <img src="figs/run_to_walk.gif" alt="Run to Walk" />
+            </div>
             <figcaption>Transition: <strong>Run → Walk</strong></figcaption>
           </figure>
         </div>
       </section>
 
-      <!-- <section id="video" class="grid cols-2">
-        <div class="card">
-          <h2>Video</h2>
-          <div class="media">
-            <iframe
-              src="https://www.youtube.com/embed/9s9dERubIWA"
-              title="Project video"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-        <div class="card">
-          <h2>Figures</h2>
-          <div class="card">
-            <h2>Figures</h2>
-            <div class="figure-grid">
-              <!-- 大图：跨两列 -->
-              <img class="span-2"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/title_fig.png"
-                   alt="Title figure" loading="lazy" decoding="async">
-              <img class="span-2"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/Gait_Mask.png"
-                   alt="Gait mask illustration" loading="lazy" decoding="async">
-              <img class="span-2"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/Overall_Framwork.png"
-                   alt="Overall framework" loading="lazy" decoding="async">
-          
-              <!-- 小图/GIF：统一 16:9 -->
-              <img class="thumb-169"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/walk_to_stand.gif"
-                   alt="Walk-to-stand transition" loading="lazy">
-              <img class="thumb-169"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/run_to_walk.gif"
-                   alt="Run-to-walk transition" loading="lazy">
-              <img class="thumb-169"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/stand.gif"
-                   alt="Standing behavior" loading="lazy">
-              <img class="thumb-169"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/high_speed_walk.gif"
-                   alt="High-speed walk" loading="lazy">
-              <img class="thumb-169"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/low_speed_walk.gif"
-                   alt="Low-speed walk" loading="lazy">
-              <img class="thumb-169"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/high_speed_run.gif"
-                   alt="High-speed run" loading="lazy">
-              <img class="thumb-169"
-                   src="/Gait-conditioned-humanoid-locomotion/figs/low_speed_run.gif"
-                   alt="Low-speed run" loading="lazy">
-            </div>
-          </div>
-      </section> -->
-
+      <!-- Citation -->
       <section id="bibtex" class="card">
         <h2>Citation</h2>
         <pre><code>@inproceedings{peng2025gaitconditioned,
-    title     = {Gait-Conditioned Reinforcement Learning with Multi-Phase Curriculum for Humanoid Locomotion},
-    author    = {Peng, Tianhu and Bao, Lingfan and Zhou, Chengxu},
-    booktitle = {IEEE-RAS International Conference on Humanoid Robots (Humanoids)},
-    year      = {2025},
-    note      = {Accepted}
-  }</code></pre>
+  title     = {Gait-Conditioned Reinforcement Learning with Multi-Phase Curriculum for Humanoid Locomotion},
+  author    = {Peng, Tianhu and Bao, Lingfan and Zhou, Chengxu},
+  booktitle = {IEEE-RAS International Conference on Humanoid Robots (Humanoids)},
+  year      = {2025},
+  note      = {Accepted}
+}</code></pre>
       </section>
 
+      <!-- Repro + Contact -->
       <section class="grid cols-2">
         <div class="card">
           <h2>Reproducibility</h2>
@@ -574,11 +512,11 @@
               Download motions and place under <code>resources/motions/</code>.
             </li>
             <li>
-              Run Phase‑1 walking:
+              Run Phase-1 walking:
               <code class="kbd">python train.py --phase=1</code>
             </li>
             <li>
-              Resume for multi‑gait:
+              Resume for multi-gait:
               <code class="kbd"
                 >python train.py --phase=3 --resume=logs/phase1.pt</code
               >
@@ -601,7 +539,7 @@
       </section>
 
       <footer>
-        © <span id="year"></span> Gait‑Conditioned RL • Built for GitHub Pages
+        © <span id="year"></span> Gait-Conditioned RL • Built for GitHub Pages
       </footer>
     </div>
     <script>
