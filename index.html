@@ -212,30 +212,35 @@
         margin-left: 8px;
       }
 
-      /* 让图像在网格中自适应且不溢出 */
+      /* Figures 统一排版 */
+      .figure-grid {
+        display: grid;
+        gap: 12px;
+        /* 自动填充列：每列最小260px，最大等分 */
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      }
+
+      /* 图片自适应、不溢出 */
       .figure-grid img {
         width: 100%;
-        max-width: 100%;
         height: auto;
         display: block;
         border: 1px solid var(--border);
         border-radius: 12px;
         background: #0a0f1e;
       }
-      /* 两列网格；窄屏自动一列 */
-      .figure-grid {
-        display: grid;
-        gap: 10px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      @media (max-width: 850px) {
-        .figure-grid {
-          grid-template-columns: 1fr;
+
+      /* 大图在宽屏时跨两列，窄屏退化为一列 */
+      @media (min-width: 900px) {
+        .figure-grid .span-2 {
+          grid-column: span 2;
         }
       }
-      /* 需要时让大图跨两列 */
-      .span-2 {
-        grid-column: span 2;
+
+      /* 让小图/GIF 统一 16:9，更整齐；去掉该类则按原始比例显示 */
+      .thumb-169 {
+        aspect-ratio: 16/9;
+        object-fit: cover; /* 居中裁切，避免超高图把网格撑高 */
       }
     </style>
   </head>
@@ -388,66 +393,44 @@
         </div>
         <div class="card">
           <h2>Figures</h2>
-          <div class="figure-grid">
-            <img
-              class="span-2"
-              src="/Gait-conditioned-humanoid-locomotion/figs/title_fig.png"
-              alt="Title figure"
-              loading="lazy"
-              decoding="async"
-            />
-            <img
-              class="span-2"
-              src="/Gait-conditioned-humanoid-locomotion/figs/Gait_Mask.png"
-              alt="Gait mask illustration"
-              loading="lazy"
-              decoding="async"
-            />
-            <img
-              class="span-2"
-              src="/Gait-conditioned-humanoid-locomotion/figs/Overall_Framwork.png"
-              alt="Overall framework"
-              loading="lazy"
-              decoding="async"
-            />
-
-            <img
-              src="/Gait-conditioned-humanoid-locomotion/figs/walk_to_stand.gif"
-              alt="Walk-to-stand transition"
-              loading="lazy"
-            />
-            <img
-              src="/Gait-conditioned-humanoid-locomotion/figs/run_to_walk.gif"
-              alt="Run-to-walk transition"
-              loading="lazy"
-            />
-            <img
-              src="/Gait-conditioned-humanoid-locomotion/figs/stand.gif"
-              alt="Standing behavior"
-              loading="lazy"
-            />
-            <img
-              src="/Gait-conditioned-humanoid-locomotion/figs/high_speed_walk.gif"
-              alt="High-speed walk"
-              loading="lazy"
-            />
-            <img
-              src="/Gait-conditioned-humanoid-locomotion/figs/low_speed_walk.gif"
-              alt="Low-speed walk"
-              loading="lazy"
-            />
-            <img
-              src="/Gait-conditioned-humanoid-locomotion/figs/high_speed_run.gif"
-              alt="High-speed run"
-              loading="lazy"
-            />
-            <img
-              src="/Gait-conditioned-humanoid-locomotion/figs/low_speed_run.gif"
-              alt="Low-speed run"
-              loading="lazy"
-            />
+          <div class="card">
+            <h2>Figures</h2>
+            <div class="figure-grid">
+              <!-- 大图：跨两列 -->
+              <img class="span-2"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/title_fig.png"
+                   alt="Title figure" loading="lazy" decoding="async">
+              <img class="span-2"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/Gait_Mask.png"
+                   alt="Gait mask illustration" loading="lazy" decoding="async">
+              <img class="span-2"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/Overall_Framwork.png"
+                   alt="Overall framework" loading="lazy" decoding="async">
+          
+              <!-- 小图/GIF：统一 16:9 -->
+              <img class="thumb-169"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/walk_to_stand.gif"
+                   alt="Walk-to-stand transition" loading="lazy">
+              <img class="thumb-169"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/run_to_walk.gif"
+                   alt="Run-to-walk transition" loading="lazy">
+              <img class="thumb-169"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/stand.gif"
+                   alt="Standing behavior" loading="lazy">
+              <img class="thumb-169"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/high_speed_walk.gif"
+                   alt="High-speed walk" loading="lazy">
+              <img class="thumb-169"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/low_speed_walk.gif"
+                   alt="Low-speed walk" loading="lazy">
+              <img class="thumb-169"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/high_speed_run.gif"
+                   alt="High-speed run" loading="lazy">
+              <img class="thumb-169"
+                   src="/Gait-conditioned-humanoid-locomotion/figs/low_speed_run.gif"
+                   alt="Low-speed run" loading="lazy">
+            </div>
           </div>
-        </div>
       </section>
 
       <section id="bibtex" class="card">
