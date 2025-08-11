@@ -51,6 +51,7 @@
       a:hover {
         text-decoration: underline;
       }
+
       .wrap {
         max-width: var(--max);
         margin: 0 auto;
@@ -100,6 +101,8 @@
         border-radius: 999px;
         font-size: 14px;
       }
+
+      /* Cards & sections */
       section {
         margin: 34px 0;
       }
@@ -122,6 +125,7 @@
         border-radius: 16px;
         padding: 18px;
       }
+
       .btns {
         display: flex;
         gap: 10px;
@@ -168,7 +172,7 @@
         color: var(--muted);
       }
 
-      /* Media blocks */
+      /* Media/Hero */
       .hero {
         background: linear-gradient(135deg, #0b1020 0%, #0e1630 100%);
         border: 1px solid var(--border);
@@ -182,21 +186,21 @@
         align-items: center;
         justify-content: center;
       }
+      .media.no-aspect {
+        aspect-ratio: auto;
+      } /* 允许封面不锁 16:9 */
       .media img {
         max-width: 100%;
-        display: block;
         height: auto;
+        display: block;
       }
       .media iframe {
         width: 100%;
         height: 100%;
         border: 0;
       }
-      .media.no-aspect {
-        aspect-ratio: auto;
-      }
 
-      /* Figure + caption */
+      /* Figure + caption（只保留一份） */
       figure {
         margin: 0;
       }
@@ -217,7 +221,7 @@
         padding: 8px 10px 0;
       }
 
-      /* Responsive image grids */
+      /* Responsive grids */
       .grid-auto {
         display: grid;
         gap: 12px;
