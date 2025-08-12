@@ -236,17 +236,6 @@
         aspect-ratio: 16/9;
         object-fit: cover;
       }
-      .gait-mask-img {
-        display: block;
-        max-width: 100%; /* 不超过 section 宽度 */
-        height: auto; /* 保持比例 */
-        margin: 0 auto; /* 居中 */
-      }
-
-      .card .fig {
-        max-width: 800px; /* 和 Overall Framework 的 figure 一样的最大宽度 */
-        margin: 0 auto; /* 居中 */
-      }
       .affiliation {
         font-size: 15px;
         color: #94a3b8;
@@ -394,10 +383,9 @@
             <li>Open-source training configs and logs for reproducibility.</li>
           </ul>
         </div>
-      </section>
 
       <!-- Gait-Conditioned Reward -->
-      <section class="card">
+      <div class="card">
         <h2>Gait-Conditioned Reward</h2>
         <p>
           The <em>gait mask</em> routes gait-specific objectives (e.g., contact,
@@ -406,11 +394,7 @@
         </p>
         <figure>
           <div class="fig">
-            <img
-              class="gait-mask-img"
-              src="figs/Gait_Mask.png"
-              alt="Gait mask and reward routing"
-            />
+            <img src="figs/Gait_Mask.png" alt="Gait mask and reward routing" />
           </div>
           <figcaption>
             Gait mask activates mode-specific rewards; regulation rewards are
