@@ -236,6 +236,18 @@
         aspect-ratio: 16/9;
         object-fit: cover;
       }
+      .gait-mask-img {
+        max-height: 360px;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+      .affiliation {
+        font-size: 15px;
+        color: #94a3b8;
+        text-align: center;
+        margin-top: 4px;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -390,6 +402,7 @@
         <figure>
           <div class="fig">
             <img
+              class="gait-mask-img"
               src="figs/Gait_Mask.png"
               alt="Gait mask and reward routing"
             />
@@ -442,11 +455,22 @@
 
         <div class="card" id="code">
           <h2>Code & Data</h2>
-          <p style="color: #94a3b8; font-style: italic; display: flex; align-items: center;">
-            <i class="fab fa-github" style="margin-right: 8px; font-size: 18px;"></i>
+          <p
+            style="
+              color: #94a3b8;
+              font-style: italic;
+              display: flex;
+              align-items: center;
+            "
+          >
+            <i
+              class="fab fa-github"
+              style="margin-right: 8px; font-size: 18px"
+            ></i>
             Code: Coming Soon
           </p>
         </div>
+      </section>
 
       <!-- Video -->
       <section class="card" id="video">
