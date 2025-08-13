@@ -64,20 +64,23 @@
         justify-items: center;
         padding: 56px 0;
       }
-      header h1.title-2lines { 
+      header h1.title-2lines {
         line-height: 1.2;
-        white-space: normal;         /* 由子元素控制是否断行 */
-        font-size: clamp(26px, 3.8vw, 46px);  /* 稍微压一点最大字号，利于两行容纳 */
+        white-space: normal;
+        font-size: clamp(26px, 3.8vw, 46px);
+        text-align: center; /* 整体居中 */
       }
 
       header h1.title-2lines .line {
-        display: inline-block;
-        white-space: nowrap;         /* 这行内部不再断开 */
+        display: block;          /* 独占一行 */
+        white-space: nowrap;     /* 锁行 */
+        text-align: center;      /* 行内文字居中 */
       }
 
-      /* 小屏放开限制，避免溢出 */
       @media (max-width: 900px) {
-        header h1.title-2lines .line { white-space: normal; }
+        header h1.title-2lines .line {
+          white-space: normal;   /* 小屏放开 */
+        }
       }
       header p.lead {
         margin: 0;
