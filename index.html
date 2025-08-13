@@ -64,13 +64,20 @@
         justify-items: center;
         padding: 56px 0;
       }
-      header h1 {
-        margin: 0;
-        font-size: clamp(26px, 4.2vw, 46px);
-        letter-spacing: 0.3px;
-        text-align: center;
-        white-space: pre-line;  /* 只在 <br> 处换行 */
-        line-height: 1.2;       /* 行距紧一点 */
+      header h1.title-2lines { 
+        line-height: 1.2;
+        white-space: normal;         /* 由子元素控制是否断行 */
+        font-size: clamp(26px, 3.8vw, 46px);  /* 稍微压一点最大字号，利于两行容纳 */
+      }
+
+      header h1.title-2lines .line {
+        display: inline-block;
+        white-space: nowrap;         /* 这行内部不再断开 */
+      }
+
+      /* 小屏放开限制，避免溢出 */
+      @media (max-width: 900px) {
+        header h1.title-2lines .line { white-space: normal; }
       }
       header p.lead {
         margin: 0;
@@ -253,10 +260,10 @@
   <body>
     <div class="wrap">
       <header>
-      <h1>
-        Gait-Conditioned Reinforcement Learning<br>
-        with Multi-Phase Curriculum for Humanoid Locomotion
-      </h1>
+        <h1 class="title-2lines">
+          <span class="line">Gait-Conditioned Reinforcement Learning</span><br>
+          <span class="line">with Multi-Phase Curriculum for Humanoid Locomotion</span>
+        </h1>
         <div class="authors">
           <a href="mailto:tianhu.peng.24@ucl.ac.uk">Tianhu Peng</a> ·
           <a href="mailto:lingfan.bao.24@ucl.ac.uk">Lingfan Bao</a> ·
